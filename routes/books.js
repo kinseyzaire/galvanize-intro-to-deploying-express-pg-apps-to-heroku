@@ -3,7 +3,7 @@ var router = express.Router();
 
 var knex = require('knex')({
     client: 'pg',
-    connection: 'postgres://localhost/library'
+    connection: process.env.DATABASE_URL || 'postgres://localhost/library'
   });
 
 function books() {
