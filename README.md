@@ -26,7 +26,7 @@ Google `how does heroku work` and click on the `https://devcenter.heroku.com` li
 1. What is a config variable?
 1. What is a release?
 
-Using [draw.io](https://www.draw.io/) Draw a diagram that illustrates how Heroku works and incorporate the above components. Then, add a `your-name.md` file to
+Using [draw.io](https://www.draw.io/) (or a software of your choosing), draw a diagram that illustrates how Heroku works and incorporate the above components. Then, add a `your-name.md` file to
 this repo and add your answers to each of the above questions. Add your diagaram, `add`, `commit`, `push` and submit a PR.
 
 ## Getting Started with Heroku
@@ -59,8 +59,6 @@ Make sure you have a .gitignore file:
 
 ```
 /node_modules
-npm-debug.log
-.DS_Store
 /*.env
 ```
 
@@ -77,32 +75,26 @@ Open your Heroku deployed app using:
 ```
 heroku open
 ```
+
 Click through the app to confirm that everything is working as it should. Is it broken? If so, how can we gain insight about why the app is broken?
 
 ## Debugging Heroku
 
 For starters, _always_ confirm that your app is working locally as it should. Then, if all is well locally, continue to debug heroku.
 
-The below command will print out a log of your apps launch process. Sift through it and look for clues about what's going wrong. When you spot a line that looks helpful, grab it a throw it into Google to help you decipher the error.
+Come up with a theory about why your app might be broken. As quickly as you can, gather evidence to prove or disprove this theory. Repeat this process until your app is fixed.
+
+Since your local server logs and the console won't be any help for debugging Heroku, where can you go to get more information?
+
+The below command will print out a log of your application's launch process. Sift through it and look for clues about what's going wrong. When you spot a line that looks helpful, grab it a throw it into Google to help you decipher the error.
 
 ```
 heroku logs
 ```
 
-## Using the `dotenv` core module to config environment variables
+## Connecting to a Heroku Hosted Postgres Database
 
-Google `npm dotenv` and read the docs to help you get up and running with a `.env` file in your Node.js app.
-
-1. add a `.env` file to your app
-1. update your database configuration to use environment variables
-
-```
-process.env.DATABASE_URL || 'postgres://localhost/library'
-```
-
-## Connect to a Heroku Hosted Postgres Database
-
-First, run the below command to see if you have any configured envirnment variables. It should be empty, but let's confirm
+First, run the below command to see if you have any configured environment variables. It should be empty, but let's confirm
 
 ```
 heroku config
@@ -123,12 +115,31 @@ You should see an environment variable called `DATABASE_URL` with a value that i
 
 `add`, `commit`, `git push heroku master` and check your app again.
 
+## Using the `dotenv` core module to config environment variables
+
+You'll need some help getting your app to talk to your environment variables, both locally as well as deployed.
+
+Google `npm dotenv` and read the docs to help you get up and running with a `.env` file in your Node.js app.
+
+1. add a `.env` file to your app
+1. update your database configuration to use environment variables
+
+```
+process.env.DATABASE_URL || 'postgres://localhost/library'
+```
+
+`add`, `commit`, `git push heroku master` and check your app again. OR if you think it is still broken, what other steps might still need to be taken for your app to work on Heroku?
+
 ## Getting into your Heroku database
 
 ```
 heroku pg:psql
 ```
 
-This drops you into your Heroku database. You can execute raw `sql` here just as you do locally.
+This drops you into your Heroku database. You can execute raw `sql` here just as you do for your local database.
 
 Continue the debugging process until you're app is up and running as it should.
+
+## Next Steps
+
+Once you've got this app up and running on Heroku, deploy another CRUD app of your choosing and add the url to your README.  
