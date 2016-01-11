@@ -1,6 +1,7 @@
 ## Objectives
 
-* Understand what Heroku is
+* Understand what Heroku is and how it works
+* Be able to use Heroku logs to debug 
 * Understand what an environment variable is
 * Be able to use the `dotenv` core module
 * Be able to deploy an Node/Express app to Heroku using the CLI
